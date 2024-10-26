@@ -1,0 +1,117 @@
+#include <stdio.h>
+
+int matriz[9][9];
+
+// verifica linha
+int linha(int f) {
+  int cont[10] = {0};
+  int elemento;
+
+  // varre a matriz
+  for (int j = 0; j < 9; j++) {
+    elemento = matriz[f][j];
+
+    if (elemento != 0) {
+      if (cont[elemento] == 1) {
+        return 0;
+      }
+      cont[elemento] = 1;
+    }
+  }
+  return 1;
+}
+
+// verifica coluna
+int coluna(int f) {
+  int cont[10] = {0};
+  int elemento;
+
+  for (int i = 0; i < 9; i++) {
+
+    elemento = matriz[i][f];
+
+    if (elemento != 0) {
+      if (cont[elemento] == 1) {
+        return 0;
+      }
+      cont[elemento] = 1;
+    }
+  }
+  return 1;
+}
+
+// verifica bloco 3x3
+int vb(int linha, int coluna) {
+  int cont[10] = {0};
+  int elemento;
+
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+      elemento = matriz[linha + i][coluna + j];
+      if (elemento != 0) {
+        if (cont[elemento] == 1) {
+          return 0;
+        }
+        cont[elemento] = 1;
+      }
+    }
+  }
+  return 1;
+}
+
+// verifica todos os blocos 3x3
+int vtb() {
+  // percorrer a matriz
+  for (int linha = 0; linha < 9; linha += 3) {
+    for (int coluna = 0; coluna < 9; coluna += 3) {
+      if (!vb(linha, coluna)) {
+        return 0;
+      }
+    }
+  }
+  return 1;
+}
+
+//
+
+// função principal
+int main() {
+  int n;
+  int k;
+  int sudoku;
+
+  do {
+    scanf("%d", &n);
+  } while (n < 1);
+
+  // instâncias
+  for (k = 1; k <= n; k++) {
+    // ler a matriz
+    for (int i = 0; i < 9; i++) {
+      for (int j = 0; j < 9; j++) {
+        scanf("%d", &matriz[i][j]);
+      }
+    }
+
+    sudoku = 1;
+    for (int i = 0; i < 9; i++) {
+      if (!linha(i) || !coluna(i)) {
+        sudoku = 0;
+        break;
+      }
+    }
+
+    if (sudoku && !vtb()) {
+      sudoku = 0;
+    }
+
+    printf("Instância %d\n", k);
+    if (sudoku == 1) {
+      printf("Sim\n");
+    } else {
+      printf("Não\n");
+    }
+    printf("\n");
+  }
+  return 0;
+}
