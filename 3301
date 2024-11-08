@@ -1,0 +1,21 @@
+#include <stdio.h>
+ 
+int main() {
+ 
+    int H, Z, L;
+    scanf("%d", &H);
+    scanf("%d", &Z);
+    scanf("%d", &L);
+
+    //H é o sobrinho do meio.
+    if((L > H && H > Z) || (L < H && H < Z))
+    printf("H\n");
+    //F é o sobrinho do meio.
+    else if((Z > L && L > H) || (Z < L && L < H))
+    printf("F\n");
+    //Z é sobinho do meio.
+    else
+    printf("Z\n");
+    
+    return 0;
+}
