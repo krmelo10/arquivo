@@ -1,0 +1,17 @@
+#include <stdio.h>
+ 
+int main() {
+ 
+    int age, anos, meses, dias;
+    scanf("%d", &age);
+    
+    anos = age / 365;
+    meses = (age % 365) / 30;
+    dias = (age % 365) % 30;
+    
+    printf("%d ano(s)\n", anos);
+    printf("%d mes(es)\n", meses);
+    printf("%d dia(s)\n", dias);
+
+    return 0;
+}
