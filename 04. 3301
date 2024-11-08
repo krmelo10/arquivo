@@ -7,7 +7,7 @@ int main() {
     scanf("%d", &Z);
     scanf("%d", &L);
 
-    //H  é o sobrinho do meio.
+    //H é o sobrinho do meio.
     if((L > H && H > Z) || (L < H && H < Z))
     printf("H\n");
     //F é o sobrinho do meio.
