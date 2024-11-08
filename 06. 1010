@@ -11,7 +11,7 @@ int main() {
     
     total = (quant1 * valor1) + (quant2 * valor2);
     
-    printf("VALOR A PAGAR: R$ %.2f\n", total);
+    printf("A PAGAR: R$ %.2f\n", total);
     
     return 0;
 }
