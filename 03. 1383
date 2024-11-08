@@ -2,12 +2,12 @@
 
 int matriz[9][9];
 
-// verifica linha
+//verifica linha
 int linha(int f) {
   int cont[10] = {0};
   int elemento;
 
-  // varre a matriz
+  //varre a matriz
   for (int j = 0; j < 9; j++) {
     elemento = matriz[f][j];
 
@@ -21,7 +21,7 @@ int linha(int f) {
   return 1;
 }
 
-// verifica coluna
+//verifica coluna
 int coluna(int f) {
   int cont[10] = {0};
   int elemento;
@@ -40,7 +40,7 @@ int coluna(int f) {
   return 1;
 }
 
-// verifica bloco 3x3
+//verifica bloco 3x3
 int vb(int linha, int coluna) {
   int cont[10] = {0};
   int elemento;
@@ -59,7 +59,7 @@ int vb(int linha, int coluna) {
   return 1;
 }
 
-// verifica todos os blocos 3x3
+//verifica todos os blocos 3x3
 int vtb() {
   // percorrer a matriz
   for (int linha = 0; linha < 9; linha += 3) {
@@ -74,7 +74,7 @@ int vtb() {
 
 //
 
-// função principal
+//função principal
 int main() {
   int n;
   int k;
@@ -84,7 +84,7 @@ int main() {
     scanf("%d", &n);
   } while (n < 1);
 
-  // instâncias
+  //instâncias
   for (k = 1; k <= n; k++) {
     // ler a matriz
     for (int i = 0; i < 9; i++) {
