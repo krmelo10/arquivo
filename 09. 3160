@@ -10,7 +10,28 @@ struct no {
 
 //função cria nós (caixinhas onde serão armazenados os nomes);
 
-*no criano(string[]){
-  
+no* criano(char nome[]){
+  no *novo = malloc(sizeof(no));
+if(novo != NULL){
+  strcpy = (novo->nome, nome);
+  novo->seg = NULL;
+  }
+return NULL;
 }
+
+//função que adiciona o nó (recém criado) no final da lista
+void adfinal(no **head, char nome[]){
+  no *novo = criano(nome);
+  if(head == NULL){
+  *head = novo;
+  return;
+  }
+  no *temp = *head;
+  while(temp->seg != NULL){
+    temp = temp->prox;
+  }
+  temp->prox = novo;
+}
+
+
 
