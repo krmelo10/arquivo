@@ -1,1 +1,16 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#define MAX 100
+
+struct no {
+  char nome[MAX];
+  struct no *seg;
+};
+
+//função cria nós (caixinhas onde serão armazenados os nomes);
+
+*no criano(string[]){
+  
+}
 
