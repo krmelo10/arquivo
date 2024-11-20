@@ -33,5 +33,94 @@ void adfinal(no **head, char nome[]){
   temp->prox = novo;
 }
 
+//função para imprimir a lista (nó por nó)
+void print(no* head){
+  no *temp = head;
+  while(temp != NULL){
+    printf("%s ", temp->nome);
+    temp = temp->prox;
+  }
+printf("\n");
+}
 
+//função para adicionar a nova lista antes do nome do amigo indicado.
+void adantes(no **head, char indicado[], no *nova){
+  no *temp = *head;
+  no *prev = NULL;
 
+  //caso especial: se o nome do amigo indicado estiver no primeiro nó; 
+  if(temp != NULL && strcmp(temp->nome, indicado) == 0){
+    no *ultimo = novalista;
+    while(ultimo->seg != NULL){
+      ultimo = ultimo->seg;
+    }
+    ultimo->seg = *head
+    *head = novalista;
+    return;
+  }
+  
+  //percorre a lista para encontrar o nó do amigo indicado;
+  while (no *temp != NULL){
+    prev = temp;
+    temp = temp->seg;
+  }
+
+    //caso o nó seja encontrado;
+    if (temp == NULL){
+      no *ultimo = novalista;
+      while(ultimo->seg != NULL){
+        ultimo = ultimo->seg;
+      }
+      prev->seg = novalista;
+      ultimo->prox = temp;
+    }
+
+    int main(){
+      char atual[MAX * 10];
+      char nova[MAX * 10];
+      char indicado[MAX];
+      no *head;
+      no *novahead = NULL;
+
+      //leitura da lista atual
+      fgets(atual, sizeof(atual), stdin);
+      atual[strlen(atual) - 1] = '\0';
+
+      //adicionando amigos na lista atual
+      char *token = strtok(atual, " ");
+      while (token != NULL){
+        adfinal(&head, token);
+        token = strtok(NULL, " ");
+      }
+
+      //leitura da nova lista;
+      fgets(nova, sizeof(nova), stdin);
+      nova[strlen(nova) - 1] = '\0';
+
+      //adicionando os novos amigos na nova lista
+      token = strtok(nova, " ");
+      while(token != NULL){
+        token = strtok(NULL, " ");
+      }
+
+      //leitura do amigo indicado
+      fgets(indicado, sizeof(indicado), stdin);
+      indicado[strlen(indicado) - 1] = '\0';
+
+      //verificando onde inserir a lista baseado no amigo indicado
+      if(strcmp(indicado, "nao") == 0){
+        no *temp = head;
+        while(temp-seg != NULL){
+          temp = temp->seg;
+        }
+        temp->seg = nova;
+      }
+      else{
+        adantes(&head, indicado, nova_head);
+      }
+
+      //imprimindo a lista
+      print(head);
+
+      return 0;
+}
