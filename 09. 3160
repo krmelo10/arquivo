@@ -13,16 +13,16 @@ struct no {
 no* criano(char nome[]){
   no *novo = malloc(sizeof(no));
 if(novo != NULL){
-  strcpy = (novo->nome, nome);
+  strcpy(novo->nome, nome);
   novo->seg = NULL;
   }
-return NULL;
+return novo;
 }
 
 //função que adiciona o nó (recém criado) no final da lista
 void adfinal(no **head, char nome[]){
   no *novo = criano(nome);
-  if(head == NULL){
+  if(*head == NULL){
   *head = novo;
   return;
   }
@@ -30,7 +30,7 @@ void adfinal(no **head, char nome[]){
   while(temp->seg != NULL){
     temp = temp->prox;
   }
-  temp->prox = novo;
+  temp->seg = novo;
 }
 
 //função para imprimir a lista (nó por nó)
@@ -50,36 +50,36 @@ void adantes(no **head, char indicado[], no *nova){
 
   //caso especial: se o nome do amigo indicado estiver no primeiro nó; 
   if(temp != NULL && strcmp(temp->nome, indicado) == 0){
-    no *ultimo = novalista;
+    no *ultimo = nova;
     while(ultimo->seg != NULL){
       ultimo = ultimo->seg;
     }
     ultimo->seg = *head
-    *head = novalista;
+    *head = nova;
     return;
   }
   
   //percorre a lista para encontrar o nó do amigo indicado;
-  while (no *temp != NULL){
+  while (temp != NULL){
     prev = temp;
     temp = temp->seg;
   }
 
     //caso o nó seja encontrado;
-    if (temp == NULL){
+    if (temp != NULL){
       no *ultimo = novalista;
       while(ultimo->seg != NULL){
         ultimo = ultimo->seg;
       }
       prev->seg = novalista;
-      ultimo->prox = temp;
+      ultimo->seg = temp;
     }
 
     int main(){
       char atual[MAX * 10];
       char nova[MAX * 10];
       char indicado[MAX];
-      no *head;
+      no *head = NULL;
       no *novahead = NULL;
 
       //leitura da lista atual
@@ -100,7 +100,9 @@ void adantes(no **head, char indicado[], no *nova){
       //adicionando os novos amigos na nova lista
       token = strtok(nova, " ");
       while(token != NULL){
+        adfinal(&novahead, token);
         token = strtok(NULL, " ");
+        
       }
 
       //leitura do amigo indicado
@@ -110,7 +112,7 @@ void adantes(no **head, char indicado[], no *nova){
       //verificando onde inserir a lista baseado no amigo indicado
       if(strcmp(indicado, "nao") == 0){
         no *temp = head;
-        while(temp-seg != NULL){
+        while(temp->seg != NULL){
           temp = temp->seg;
         }
         temp->seg = nova;
