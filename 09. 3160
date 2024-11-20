@@ -3,10 +3,10 @@
 #include <string.h>
 #define MAX 100
 
-struct no {
+typedef struct no {
   char nome[MAX];
   struct no *seg;
-};
+}no;
 
 //função cria nós (caixinhas onde serão armazenados os nomes);
 
@@ -28,7 +28,7 @@ void adfinal(no **head, char nome[]){
   }
   no *temp = *head;
   while(temp->seg != NULL){
-    temp = temp->prox;
+    temp = temp->seg;
   }
   temp->seg = novo;
 }
@@ -38,23 +38,23 @@ void print(no* head){
   no *temp = head;
   while(temp != NULL){
     printf("%s ", temp->nome);
-    temp = temp->prox;
+    temp = temp->seg;
   }
 printf("\n");
 }
 
-//função para adicionar a nova lista antes do nome do amigo indicado.
+//funçãoo para adicionar a nova lista antes do nome do amigo indicado.
 void adantes(no **head, char indicado[], no *nova){
   no *temp = *head;
   no *prev = NULL;
 
-  //caso especial: se o nome do amigo indicado estiver no primeiro nó; 
+  //caso especial: se o nome do amigo indicado estiver no primeiro nó. 
   if(temp != NULL && strcmp(temp->nome, indicado) == 0){
     no *ultimo = nova;
     while(ultimo->seg != NULL){
       ultimo = ultimo->seg;
     }
-    ultimo->seg = *head
+    ultimo->seg = *head;
     *head = nova;
     return;
   }
@@ -67,13 +67,14 @@ void adantes(no **head, char indicado[], no *nova){
 
     //caso o nó seja encontrado;
     if (temp != NULL){
-      no *ultimo = novalista;
+      no *ultimo = nova;
       while(ultimo->seg != NULL){
         ultimo = ultimo->seg;
       }
-      prev->seg = novalista;
+      prev->seg = nova;
       ultimo->seg = temp;
     }
+}
 
     int main(){
       char atual[MAX * 10];
@@ -86,7 +87,7 @@ void adantes(no **head, char indicado[], no *nova){
       fgets(atual, sizeof(atual), stdin);
       atual[strlen(atual) - 1] = '\0';
 
-      //adicionando amigos na lista atual
+      //adicionando os amigos na lista atual
       char *token = strtok(atual, " ");
       while (token != NULL){
         adfinal(&head, token);
@@ -102,7 +103,6 @@ void adantes(no **head, char indicado[], no *nova){
       while(token != NULL){
         adfinal(&novahead, token);
         token = strtok(NULL, " ");
-        
       }
 
       //leitura do amigo indicado
@@ -115,10 +115,10 @@ void adantes(no **head, char indicado[], no *nova){
         while(temp->seg != NULL){
           temp = temp->seg;
         }
-        temp->seg = nova;
+        temp->seg = novahead;
       }
       else{
-        adantes(&head, indicado, nova_head);
+        adantes(&head, indicado, novahead);
       }
 
       //imprimindo a lista
