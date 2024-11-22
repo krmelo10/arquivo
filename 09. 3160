@@ -43,7 +43,7 @@ void print(no* head){
 printf("\n");
 }
 
-//funçãoo para adicionar a nova lista antes do nome do amigo indicado.
+//função para adicionar a nova lista antes do nome do amigo indicado.
 void adantes(no **head, char indicado[], no *nova){
   no *temp = *head;
   no *prev = NULL;
