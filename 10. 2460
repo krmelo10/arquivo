@@ -1,0 +1,51 @@
+https://www.beecrowd.com.br/repository/UOJ_2460.html
+
+#include stdio.h>
+#include <stlib.h>
+#define MAX 50000
+
+typedef struct no{
+  int valor;
+  struct celula *seg;
+}no;
+
+//função que cria nós
+  no *celula(int valor){
+    no *novono;
+    celula = malloc(sizeof(no));
+    celula->valor = valor;
+    celula->seg = NULL;
+    return celula;
+  }
+
+//função insere pessoas na fila
+  void insere(no **es, no **et, int M);
+    no *;  
+    
+    
+    
+
+//função que remove pessoas da fila
+
+//função principal
+int main(){
+
+  int N, M;
+  scanf("%d", &N);
+  int fila[N];
+  int out[
+
+  for (int z = 0; z < N; z++){
+    scanf("%d", &fila[z);
+  }
+
+  for (int z = 0; z < M; z++){
+    scanf("%d", &out[z])";
+  }
+
+  //marcar as pessoas que saíram
+  
+  
+  
+  return 0;
+}
