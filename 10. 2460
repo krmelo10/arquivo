@@ -1,4 +1,4 @@
-https://www.beecrowd.com.br/repository/UOJ_2460.html
+//https://www.beecrowd.com.br/repository/UOJ_2460.html
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,7 +7,7 @@ https://www.beecrowd.com.br/repository/UOJ_2460.html
 typedef struct no{
   int valor;
   struct no *seg;
-}no;
+} no;
 
 //função cria nós
 no *criano(int valor){
@@ -32,17 +32,17 @@ void insere(no **es, no **et, int N){
 }
 
 //função remove pessoas da fila
-void remove(no **es, no **et, int tagM) {
+void remover(no **es, no **et, int tagM) {
     no *atual = *es;
     no *prev = NULL;
 
     while (atual != NULL) {
-        if (atual->valor == id) {
+        if (atual->valor == tagM) {
             if (prev == NULL) {
-                //removendo o primeiro nó
+                //remove o primeiro nó
                 *es = atual->seg;
             } else {
-                //removendo do meio ou final
+                //remove do meio ou final
                 prev->seg = atual->seg;
             }
             if (*et == atual) {
@@ -52,19 +52,19 @@ void remove(no **es, no **et, int tagM) {
             return;
         }
         prev = atual;
-        atual = atual->seg
+        atual = atual->seg;
   }
 }
 
 //função imprime fila
 void print(no *es){
   no *p;
-  p = *es;
+  p = es;
   while(p != NULL){
     printf("%d ", p->valor);
     p = p->seg;
   }
-printf("\n");
+  printf("\n");
 }
 
 //função principal
@@ -91,7 +91,7 @@ int main(){
   for (int z = 0; z < M; z++){
     int tagM;
     scanf("%d", &tagM);
-    remove(&es, &et, tagM);
+    remover(&es, &et, tagM);
   }
 
   //exibindo os que ficaram
