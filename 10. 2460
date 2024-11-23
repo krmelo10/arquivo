@@ -1,7 +1,7 @@
 https://www.beecrowd.com.br/repository/UOJ_2460.html
 
 #include <stdio.h>
-#include <stlib.h>
+#include <stdlib.h>
 #define MAX 50000
 
 typedef struct no{
@@ -18,7 +18,7 @@ no *criano(int valor){
     novono->seg = NULL;
   }
   return novono;
-  }
+}
 
 //função insere pessoas na fila
 void insere(no **es, no **et, int N){
@@ -32,16 +32,28 @@ void insere(no **es, no **et, int N){
 }
 
 //função remove pessoas da fila
-int remove(no **es, no **et){
-  no *p;
-  p = *es;
-  int x = p->valor;
-  *es = p->seg;
-  if(*es == NULL){
-    *et = NULL;
+void remove(no **es, no **et, int tagM) {
+    no *atual = *es;
+    no *prev = NULL;
+
+    while (atual != NULL) {
+        if (atual->valor == id) {
+            if (prev == NULL) {
+                //removendo o primeiro nó
+                *es = atual->seg;
+            } else {
+                //removendo do meio ou final
+                prev->seg = atual->seg;
+            }
+            if (*et == atual) {
+                *et = prev;
+            }
+            free(atual);
+            return;
+        }
+        prev = atual;
+        atual = atual->seg
   }
-  free(p);
-  return x;
 }
 
 //função imprime fila
@@ -59,7 +71,7 @@ printf("\n");
 int main(){
 
   int N, M;
-  no *es = 0;
+  no *es = NULL;
   no *et = NULL;
 
   //quantidade de pessoas que entraram na fila
@@ -79,7 +91,7 @@ int main(){
   for (int z = 0; z < M; z++){
     int tagM;
     scanf("%d", &tagM);
-    remove(&es, &et);
+    remove(&es, &et, tagM);
   }
 
   //exibindo os que ficaram
@@ -87,7 +99,9 @@ int main(){
   
   //
   while(es != NULL){
-    remove(&es, &et);
+    no *temp = es;
+    es = es->seg;
+    free(temp);
   }
 
   return 0;
