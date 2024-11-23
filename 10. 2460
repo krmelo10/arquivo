@@ -9,43 +9,87 @@ typedef struct no{
   struct celula *seg;
 }no;
 
-//função que cria nós
-  no *celula(int valor){
-    no *novono;
-    celula = malloc(sizeof(no));
-    celula->valor = valor;
-    celula->seg = NULL;
-    return celula;
+//função cria nós
+no *criano(int valor){
+  no *novono;
+  novono = malloc(sizeof(no));
+  novono->valor = valor;
+  novono->seg = NULL;
+  return novono;
   }
 
 //função insere pessoas na fila
-  void insere(no **es, no **et, int M);
-    no *;  
-    
-    
-    
+void insere(no **es, no **et, int N){
+  no *nova;
+  novo = malloc(sizeof(no));
+  novo->valor = N;
+  novo->seg = NULL;
+  if(*et == NULL)
+    *et = NULL;
+  else {
+    et->seg = novo;
+    *et = nova;
+  }
+}
 
-//função que remove pessoas da fila
+//função remove pessoas da fila
+int remove(no **es, no **et){
+  no *p;
+  p = *es;
+  int x = p->valor;
+  *es = p->seg;
+  if(*es == NULL){
+    *et = NULL;
+  }
+  return x;
+}
+
+//função imprime fila
+void(**es){
+  int *p;
+  p = *es;
+  while(p != NULL){
+    printf("%d", p->valor);
+    p = p->seg;
+  }
+printf("\n");
+}
 
 //função principal
 int main(){
 
   int N, M;
-  scanf("%d", &N);
-  int fila[N];
-  int out[
+  int *es = 0
+  int *et = NULL;
 
+  //quantidade de pessoas que entraram na fila
+  scanf("%d", &N);
+  int *fila;
+  fila = malloc(N * sizeof(int));
+  
+  //leitura dos identificadores dos que entraram na fila
   for (int z = 0; z < N; z++){
-    scanf("%d", &fila[z);
+    scanf("%d", &fila[z]);
+    insere(**es, **et, N);
   }
 
+  //quantidade de pessoas que saíram da fila
+  scanf("%d", &M);
+  int *out;
+  out = malloc(M * sizeof(int));
+
+  //leitura dos que saíram da fila
   for (int z = 0; z < M; z++){
     scanf("%d", &out[z])";
+    remove(**es, **et);
   }
 
-  //marcar as pessoas que saíram
+  //exibindo os que ficaram
+  print(**et);
   
   
-  
+  free(fila);
+  free(out);
+
   return 0;
 }
