@@ -1,34 +1,36 @@
 https://www.beecrowd.com.br/repository/UOJ_2460.html
 
-#include stdio.h>
+#include <stdio.h>
 #include <stlib.h>
 #define MAX 50000
 
 typedef struct no{
   int valor;
-  struct celula *seg;
+  struct no *seg;
 }no;
 
 //função cria nós
 no *criano(int valor){
   no *novono;
   novono = malloc(sizeof(no));
-  novono->valor = valor;
-  novono->seg = NULL;
+  if(novono != NULL){
+    novono->valor = valor;
+    novono->seg = NULL;
+  }
   return novono;
   }
 
 //função insere pessoas na fila
 void insere(no **es, no **et, int N){
-  no *nova;
+  no *novo;
   novo = malloc(sizeof(no));
   novo->valor = N;
   novo->seg = NULL;
   if(*et == NULL)
-    *et = NULL;
+    *et = *es = novo;
   else {
-    et->seg = novo;
-    *et = nova;
+    (*et)->seg = novo;
+    *et = novo;
   }
 }
 
@@ -41,15 +43,16 @@ int remove(no **es, no **et){
   if(*es == NULL){
     *et = NULL;
   }
+  free(p);
   return x;
 }
 
 //função imprime fila
-void(**es){
-  int *p;
+void print(no **es){
+  no *p;
   p = *es;
   while(p != NULL){
-    printf("%d", p->valor);
+    printf("%d ", p->valor);
     p = p->seg;
   }
 printf("\n");
@@ -59,37 +62,36 @@ printf("\n");
 int main(){
 
   int N, M;
-  int *es = 0
+  int *es = 0;
   int *et = NULL;
 
   //quantidade de pessoas que entraram na fila
   scanf("%d", &N);
-  int *fila;
-  fila = malloc(N * sizeof(int));
   
   //leitura dos identificadores dos que entraram na fila
   for (int z = 0; z < N; z++){
-    scanf("%d", &fila[z]);
-    insere(**es, **et, N);
+    int tagN;
+    scanf("%d", &tagN);
+    insere(&es, &et, tagN);
   }
 
   //quantidade de pessoas que saíram da fila
   scanf("%d", &M);
-  int *out;
-  out = malloc(M * sizeof(int));
 
   //leitura dos que saíram da fila
   for (int z = 0; z < M; z++){
-    scanf("%d", &out[z])";
-    remove(**es, **et);
+    int tagM;
+    scanf("%d", &tagM);
+    remove(&es, &et);
   }
 
   //exibindo os que ficaram
-  print(**et);
+  print(es);
   
-  
-  free(fila);
-  free(out);
+  //
+  while(es != NULL){
+    remove(&es, &et);
+  }
 
   return 0;
 }
