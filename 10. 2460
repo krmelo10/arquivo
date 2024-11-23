@@ -22,10 +22,7 @@ no *criano(int valor){
 
 //função insere pessoas na fila
 void insere(no **es, no **et, int N){
-  no *novo;
-  novo = malloc(sizeof(no));
-  novo->valor = N;
-  novo->seg = NULL;
+  no *novo = criano(N);
   if(*et == NULL)
     *et = *es = novo;
   else {
@@ -48,7 +45,7 @@ int remove(no **es, no **et){
 }
 
 //função imprime fila
-void print(no **es){
+void print(no *es){
   no *p;
   p = *es;
   while(p != NULL){
@@ -62,8 +59,8 @@ printf("\n");
 int main(){
 
   int N, M;
-  int *es = 0;
-  int *et = NULL;
+  no *es = 0;
+  no *et = NULL;
 
   //quantidade de pessoas que entraram na fila
   scanf("%d", &N);
