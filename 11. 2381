@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void ordena(int N, int K){
+  int n, m;
+  for(n = 0; n <= N; n++){
+    for(m = 0; m <= N; n++){
+      int z = strcmp(nome[n][m]);
+      if(z > 0){
+        char aux[N];
+        strcpy(aux, nome[n]);
+        strcpy(nome[n], nome[m];
+        strcpy(nome[y], aux);
+        }
+    }
+  }
+int char aluno[];
+strcpy(aluno[], nome[K];
+}
+
+int main(){
+  int N, K;
+  scanf("%d %d", &N, &K);
+  
+  //leitura dos nomes dos alunos
+  char nome[N][100];
+  for(int l = 0; l <= N; l++){
+    fgets(nome[l], sizeof(nome[l]), stdin);
+    nome[l][strcspn(nome[l), "\n")] = '\0';
+  }
+  
+  ordenada(N, K);
+
+  return 0;
+}
