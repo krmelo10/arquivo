@@ -5,8 +5,10 @@
 char nome[N][100];
 char aluno[100];
 
-void ordena(int N, int K){
+void ordena(int N, int K, char nome[], aluno[]){
   int n, m;
+  char aluno[100];
+
   for(n = 0; n <= N; n++){
     for(m = 0; m <= N; m++){
       if(strcmp(nome[n], nome[m]) > 0){
@@ -24,14 +26,14 @@ printf("%s", aluno);
 int main(){
   int N, K;
   scanf("%d %d", &N, &K);
-  
+  char nome[N][100];
   //leitura dos nomes dos alunos
   for(int l = 0; l < N; l++){
     fgets(nome[l], sizeof(nome[l]), stdin);
-    nome[l][strcspn(nome[l), "\n")] = '\0';
+    nome[l][strcspn(nome[l]), "\n")] = '\0';
   }
   
-  ordenada(N, K);
+  ordena(N, K, nome[], aluno[]);
 
   return 0;
 }
