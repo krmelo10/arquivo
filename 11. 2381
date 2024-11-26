@@ -17,7 +17,7 @@ void ordena(int N, int K){
         }
     }
   }
-strcpy(aluno, nome[K]);
+strcpy(aluno, nome[K - 1]);
 printf("%s", aluno);
 }
 
