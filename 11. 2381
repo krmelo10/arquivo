@@ -2,9 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-char nome[N][100];
-char aluno[100];
-
 void ordena(int N, int K, char nome[], aluno[]){
   int n, m;
   char aluno[100];
