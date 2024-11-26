@@ -2,21 +2,23 @@
 #include <stdlib.h>
 #include <string.h>
 
+char nome[N][100];
+char aluno[100];
+
 void ordena(int N, int K){
   int n, m;
   for(n = 0; n <= N; n++){
-    for(m = 0; m <= N; n++){
-      int z = strcmp(nome[n][m]);
-      if(z > 0){
-        char aux[N];
+    for(m = 0; m <= N; m++){
+      if(strcmp(nome[n], nome[m]) > 0){
+        char aux[100];
         strcpy(aux, nome[n]);
         strcpy(nome[n], nome[m];
-        strcpy(nome[y], aux);
+        strcpy(nome[m], aux);
         }
     }
   }
-int char aluno[];
-strcpy(aluno[], nome[K];
+strcpy(aluno, nome[K]);
+printf("%s", aluno);
 }
 
 int main(){
@@ -24,8 +26,7 @@ int main(){
   scanf("%d %d", &N, &K);
   
   //leitura dos nomes dos alunos
-  char nome[N][100];
-  for(int l = 0; l <= N; l++){
+  for(int l = 0; l < N; l++){
     fgets(nome[l], sizeof(nome[l]), stdin);
     nome[l][strcspn(nome[l), "\n")] = '\0';
   }
