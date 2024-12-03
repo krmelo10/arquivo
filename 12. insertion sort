@@ -1,41 +1,43 @@
 #include <stdio.h>
+#define MAX 100
 
-//função para ordenar o array
-void insertion_sort (int v[], int n){
-    for (int i = 1; i < n; ++i) {
-        int key = arr[i];
-        int j = i - 1;
+//função para ordenar o vetor
+void insertion_sort(int v[], int tam){
+    for (int i = 1; i < tam; i++){
+        //guarda, temporariamente, o elemento que está em análise para ser ordenado
+        int temp = v[i];
+        //guarda o indíce anterior ao índice do elemento em análise para ordenação
+        int prev = i - 1;
 
-        /* Move elements of arr[0..i-1], that are
-           greater than key, to one position ahead
-           of their current position */
-        while (j >= 0 && arr[j] > key) {
-            arr[j + 1] = arr[j];
-            j = j - 1;
+        /*percorre o vetor até o elemento anterior ao elemento em análise.
+        move todos os elementos maiores que o elemento em análise uma posição à frente da posição atual        
+        */
+        while (prev >= 0 && v[prev] > temp) {
+            v[prev + 1] = v[prev];
+            prev = prev - 1;
         }
-        arr[j + 1] = key;
+        v[prev + 1] = temp;
     }
 }
 
-/* A utility function to print array of size n */
-void printArray(int arr[], int n)
-{
-    for (int i = 0; i < n; ++i)
-        printf("%d ", arr[i]);
+//imprime o vetor ordenado
+void imprime(int v[], int tam){
+    for (int i = 0; i < tam; i++)
+        printf("%d ", v[i]);
     printf("\n");
 }
 
-// Driver method
-int main()
-{
-    int arr[] = { 12, 11, 13, 5, 6 };
-    int n = sizeof(arr) / sizeof(arr[0]);
-
-    insertionSort(arr, n);
-    printArray(arr, n);
+//função principal
+int main(){
+    int tam;
+    scanf("%d", &tam);
+    int v[MAX];
+    for(int i = 0; i < tam; i++){
+        printf("v[%d]: ", i + 1);
+        scanf("%d", &v[i]);
+    }
+    insertion_sort(v, tam);
+    imprime(v, tam);
 
     return 0;
 }
-
-/* This code is contributed by Hritik Shah. */
-
