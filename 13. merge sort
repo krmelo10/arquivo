@@ -1,40 +1,81 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #define MAX 100
 
-//ordena o vetor
-void insertion_sort(int v[], int tam) {
-    for (int i = 1; i < tam; i++) {
-        //guarda, temporariamente, o elemento que está em análise para ser ordenado
-        int temp = v[i];
-        //guarda o índice anterior ao índice do elemento em análise para ordenação
-        int ant = i - 1;
+//função para fazer o merge de dois subvetores
+void merge(int v[], int e, int m, int d) {
+    int i, j, k;
+    int n1 = m - e + 1;  //tamanho do primeiro subvetor
+    int n2 = d - m;       //tamanho do segundo subvetor
 
-        //percorre o vetor até o elemento anterior ao elemento em análise.
-        //move todos os elementos maiores que o elemento em análise uma posição à frente da posição atual        
+    //arrays temporários
+    int E[n1], D[n2];
 
-        while (ant >= 0 && v[ant] > temp) {
-            v[ant + 1] = v[ant];
-            ant = ant - 1;
+    //copia os dados para os arrays temporários
+    for (i = 0; i < n1; i++)
+        E[i] = v[e + i];
+    for (j = 0; j < n2; j++)
+        D[j] = v[m + 1 + j];
+
+    //merge os dois arrays de volta no vetor v[]
+    i = 0;
+    j = 0;
+    k = e;
+    while (i < n1 && j < n2) {
+        if (E[i] <= D[j]) {
+            v[k] = E[i];
+            i++;
+        } else {
+            v[k] = D[j];
+            j++;
         }
-        v[ant + 1] = temp;
+        k++;
+    }
+
+    //copia os elementos restantes de E[], se houverem.
+    while (i < n1) {
+        v[k] = E[i];
+        i++;
+        k++;
+    }
+
+    //copia os elementos restantes de D[], se houverem.
+    while (j < n2) {
+        v[k] = D[j];
+        j++;
+        k++;
     }
 }
 
-//imprime o vetor ordenado
-void imprime(int v[], int tam) {
-    for (int i = 0; i < tam; i++) {
-        printf("%d ", v[i]);
+//função recursiva de ordenação merge_sort
+void merge_sort(int v[], int e, int d) {
+    if (e < d) {
+        //encontra o ponto médio
+        int m = e + (d - e) / 2;
+
+        //ordena as duas metades
+        merge_sort(v, e, m);
+        merge_sort(v, m + 1, d);
+
+        //faz o merge das duas metades ordenadas
+        merge(v, e, m, d);
     }
+}
+
+//função imprime o vetor
+void imprime(int v[], int tam) {
+    for (int i = 0; i < tam; i++)
+        printf("%d ", v[i]);
     printf("\n");
 }
 
-//vverificar o tempo de execução
+//função mede o tempo de execução
 void execucao(int v[], int tam) {
     clock_t t;
     t = clock(); 
-    insertion_sort(v, tam);
-    t = clock() - t; 
+    merge_sort(v, 0, tam - 1);
+    t = clock() - t;
     printf("tempo de execução: %lf ms\n", ((double)t) / (CLOCKS_PER_SEC / 1000));
 }
 
@@ -49,9 +90,9 @@ int main() {
         printf("v[%d]: ", i + 1);
         scanf("%d", &v[i]);
     }
-    insertion_sort(v, tam);
-    imprime(v, tam);
+
     execucao(v, tam);
+    imprime(v, tam);
 
     return 0;
 }
