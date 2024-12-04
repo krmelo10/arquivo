@@ -1,1 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 100
 
+void bubble_sort(int v[], int tam) {
+    int n, m;
+    char aux[100];
+
+    //bubble sort para ordenar os nomes.
+    for (n = 0; n < tam - 1; n++) {
+        for (m = 0; m < tam - 1 - n; m++) {
+            if (v[m] > v[n]) {
+                aux = v[m];
+                v[m] = v[m + 1];
+                v[m + 1] = aux;
+            }
+        }
+    }
+
+    //imprime o nome na posição K
+    printf("%s\n", nome[K - 1]);
+}
+
+//imprime o vetor ordenado
+void imprime(int v[], int tam){
+    for (int i = 0; i < tam; i++)
+        printf("%d ", v[i]);
+    printf("\n");
+}
+
+//função para verificar tempo de execução
+void execucao(int v[], int tam){
+    clock_t t;
+    t = clock(); 
+    bubble_sort(v, tam);
+    t = clock() - t;
+    printf("tempo de execução: %lf ms\n", ((double)t)/((CLOCKS_PER_SEC/1000)));
+}
+
+int main() {
+    int tam;
+    scanf("%d", &tam);
+    int v[MAX];
+    for(int i = 0; i < tam; i++){
+        printf("v[%d]: ", i + 1);
+        scanf("%d", &v[i]);
+    }
+
+    imprime(v, tam);
+    execucao(v, tam);
+
+    return 0;
+}
