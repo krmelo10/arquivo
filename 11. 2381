@@ -2,35 +2,39 @@
 #include <stdlib.h>
 #include <string.h>
 
-void ordena(int N, int K, char nome[], aluno[]){
-  int n, m;
-  char aluno[100];
+void ordena(int N, int K, char nome[][100]) {
+    int n, m;
+    char aux[100];
 
-  for(n = 0; n <= N; n++){
-    for(m = 0; m <= N; m++){
-      if(strcmp(nome[n], nome[m]) > 0){
-        char aux[100];
-        strcpy(aux, nome[n]);
-        strcpy(nome[n], nome[m];
-        strcpy(nome[m], aux);
+    //bubble sort para ordenar os nomes.
+    for (n = 0; n < N - 1; n++) {
+        for (m = 0; m < N - 1 - n; m++) {
+            if (strcmp(nome[m], nome[m + 1]) > 0) {
+                strcpy(aux, nome[m]);
+                strcpy(nome[m], nome[m + 1]);
+                strcpy(nome[m + 1], aux);
+            }
         }
     }
-  }
-strcpy(aluno, nome[K - 1]);
-printf("%s", aluno);
+
+    //imprime o nome na posição K
+    printf("%s\n", nome[K - 1]);
 }
 
-int main(){
-  int N, K;
-  scanf("%d %d", &N, &K);
-  char nome[N][100];
-  //leitura dos nomes dos alunos
-  for(int l = 0; l < N; l++){
-    fgets(nome[l], sizeof(nome[l]), stdin);
-    nome[l][strcspn(nome[l]), "\n")] = '\0';
-  }
-  
-  ordena(N, K, nome[], aluno[]);
+int main() {
+    int N, K;
+    scanf("%d %d", &N, &K);
+    getchar();
 
-  return 0;
+    char nome[N][100];
+
+    //leitura dos nomes dos alunos
+    for (int l = 0; l < N; l++) {
+        fgets(nome[l], sizeof(nome[l]), stdin);
+        nome[l][strcspn(nome[l], "\n")] = '\0';
+    }
+
+    ordena(N, K, nome);
+
+    return 0;
 }
