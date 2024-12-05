@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// estrutura nó
+typedef struct no {
+  int elemento;
+  struct no *seg;
+} no;
+
+// adiciona na fila
+void ad(no **queue, int num) {
+  no *aux;
+  no *novo = malloc(sizeof(no));  // corrigido a alocação de memória
+  if (novo != NULL) {
+    novo->elemento = num;
+    novo->seg = NULL;
+    // verifica se a lista está vazia.
+    // se não, o primeiro elemento da fila aponta para o novo nó.
+    if (*queue == NULL)
+      *queue = novo;
+    else {
+      aux = *queue;
+      while (aux->seg != NULL) {
+        aux = aux->seg;
+      }
+      aux->seg = novo;
+    }
+  } else {
+    printf("error.\n");
+  }
+}
+
+// remove da fila
+no *remover(no **queue) {
+  no *remover = NULL;
+  if (*queue != NULL) {
+    remover = *queue;
+    *queue = remover->seg;
+  } else {
+    printf("empty queue.\n");
+  }
+  return remover;
+}
+
+// imprime lista após remoção
+void print(no *queue) {
+  while (queue != NULL) {  
+    printf("%d ", queue->elemento); 
+    queue = queue->seg;
+  }
+  printf("\n");
+}
+
+int main() {
+  int choice;
+  int num;
+  no *queue = NULL; 
+
+  do {
+    printf("0: (leave)\n1: (add)\n2: (remove)\n3: (print)\n");
+    scanf("%d", &choice);
+    switch (choice) {
+      case 0:
+        printf("leaving\n");
+        break;
+      case 1:
+        printf("digite o número para adicionar: ");
+        scanf("%d", &num);
+        ad(&queue, num);
+        break;
+      case 2:
+        {
+          no *r = remover(&queue);
+          if (r != NULL) {
+            printf("removido: %d\n", r->elemento);
+            free(r);
+          }
+          break;
+        }
+      case 3:
+        print(queue);
+        break;
+      default:
+        printf("opção inválida.\n");
+        break;
+    }
+  } while (choice != 0);
+
+  return 0;
+}
