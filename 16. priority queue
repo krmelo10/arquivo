@@ -1,1 +1,129 @@
+#include <stdio.h>
+#include <stdlib.h>
 
+// estrutura nó
+typedef struct no {
+  int elemento;
+  struct no *seg;
+} no;
+
+// adiciona na fila
+void ad(no **queue, int num) {
+  no *aux;
+  no *novo = malloc(sizeof(no));
+  if (novo != NULL) {
+    novo->elemento = num;
+    novo->seg = NULL;
+    // verifica se a fila está vazia.
+    if (*queue == NULL)
+      *queue = novo;
+    // se não, percorre a fila até o final e adiciona o novo nó
+    else {
+      aux = *queue;
+      while (aux->seg != NULL)
+        aux = aux->seg;
+      aux->seg = novo;
+    }
+  } 
+  else
+    printf("error.\n");
+}
+
+// adiciona com prioridade
+void adpriority(no **queue, int num) {
+  no *aux;
+  no *novo = malloc(sizeof(no));
+  if (novo != NULL) {
+    novo->elemento = num;
+    novo->seg = NULL;
+    // verifica se a fila está vazia.
+    if (*queue == NULL)
+      *queue = novo;
+    // se não, percorre a fila até o final e adiciona o novo nó
+    else {
+      if(num > 59){
+        if((*queue)->elemento < 60){
+          novo->seg = *queue;
+          *queue = novo;
+        }
+        else{
+          aux = *queue;
+          while(aux->seg && aux->seg->elemento)
+            aux = aux->seg;
+          novo->seg = aux->seg;
+          aux->seg = novo;
+        }
+      }
+      else {
+        aux = *queue;
+        while (aux->seg != NULL)
+          aux = aux->seg;
+        aux->seg = novo;
+      }
+    } 
+  }
+  else
+    printf("error.\n");
+}
+
+// remove da fila
+no *remover(no **queue) {
+  no *r = NULL;
+  if (*queue != NULL) {
+    r = *queue;
+    *queue = r->seg;
+  } 
+  else
+    printf("empty queue.\n");
+  return r;
+}
+
+// imprime fila após remoção
+void print(no *queue) {
+  while (queue != NULL) {  
+    printf("%d ", queue->elemento); 
+    queue = queue->seg;
+  }
+  printf("\n");
+}
+
+int main() {
+  int choice;
+  int num;
+  no *queue = NULL; 
+
+  do {
+    printf("0: (leave)\n1: (add)\n2: (remove)\n3: (print)\n4: (add with priority)\n");
+    scanf("%d", &choice);
+    switch (choice) {
+      case 0:
+        printf("leaving\n");
+        break;
+      case 1:
+        printf("add number: ");
+        scanf("%d", &num);
+        ad(&queue, num);
+        break;
+      case 2:
+          no *r = remover(&queue);
+          if (r != NULL) {
+            printf("removido: %d\n", r->elemento);
+            free(r);
+          }
+          break;
+      case 3:
+        print(queue);
+        break;
+      case 4:
+        printf("add number: ");
+        scanf("%d", &num);
+        adpriority(&queue, num);
+        break;
+      default:
+        printf("opção inválida.\n");
+        break;
+    }
+  } while (choice != 0);
+
+  return 0;
+}
