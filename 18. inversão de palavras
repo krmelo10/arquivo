@@ -41,11 +41,10 @@ int main() {
         }
         i++;
     }
-
     palavra[j] = '\0';
-    if (!primeiro) {
+    if (!primeiro)
         printf(" ");
-    }
+    
     inverter_palavra(palavra);
 
     return 0;
