@@ -17,7 +17,7 @@ void ad(no **queue, int num) {
     // verifica se a fila está vazia.
     if (*queue == NULL)
       *queue = novo;
-    // se não, o primeiro elemento da fila aponta para o novo nó.
+    // se não, percorre a fila até o final e adiciona o novo nó
     else {
       aux = *queue;
       while (aux->seg != NULL)
