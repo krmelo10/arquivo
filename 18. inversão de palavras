@@ -27,20 +27,19 @@ int main() {
     int primeiro = 1;
 
     while (frase[i] != '\0') {
-        if (frase[i] != ' ') {
+        if (frase[i] != ' ')
             palavra[j++] = frase[i];
-        } 
         else {
             palavra[j] = '\0';
-            if (!primeiro) {
+            if (!primeiro)
                 printf(" ");
-            }
             inverte(palavra);
             primeiro = 0;
             j = 0;
         }
         i++;
     }
+
     palavra[j] = '\0';
     if (!primeiro)
         printf(" ");
