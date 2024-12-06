@@ -10,39 +10,38 @@ typedef struct no {
 // adiciona na fila
 void ad(no **queue, int num) {
   no *aux;
-  no *novo = malloc(sizeof(no));  // corrigido a alocação de memória
+  no *novo = malloc(sizeof(no));
   if (novo != NULL) {
     novo->elemento = num;
     novo->seg = NULL;
-    // verifica se a lista está vazia.
-    // se não, o primeiro elemento da fila aponta para o novo nó.
+    // verifica se a fila está vazia.
     if (*queue == NULL)
       *queue = novo;
+    // se não, o primeiro elemento da fila aponta para o novo nó.
     else {
       aux = *queue;
-      while (aux->seg != NULL) {
+      while (aux->seg != NULL)
         aux = aux->seg;
-      }
       aux->seg = novo;
     }
-  } else {
+  } 
+  else
     printf("error.\n");
-  }
 }
 
 // remove da fila
 no *remover(no **queue) {
-  no *remover = NULL;
+  no *r = NULL;
   if (*queue != NULL) {
-    remover = *queue;
-    *queue = remover->seg;
-  } else {
+    r = *queue;
+    *queue = r->seg;
+  } 
+  else
     printf("empty queue.\n");
-  }
-  return remover;
+  return r;
 }
 
-// imprime lista após remoção
+// imprime fila após remoção
 void print(no *queue) {
   while (queue != NULL) {  
     printf("%d ", queue->elemento); 
@@ -64,19 +63,17 @@ int main() {
         printf("leaving\n");
         break;
       case 1:
-        printf("digite o número para adicionar: ");
+        printf("add number: ");
         scanf("%d", &num);
         ad(&queue, num);
         break;
       case 2:
-        {
           no *r = remover(&queue);
           if (r != NULL) {
             printf("removido: %d\n", r->elemento);
             free(r);
           }
           break;
-        }
       case 3:
         print(queue);
         break;
