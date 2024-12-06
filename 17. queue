@@ -41,7 +41,7 @@ no *remover(no **queue) {
   return r;
 }
 
-// imprime fila após remoção
+// imprime fila (após remoção)
 void print(no *queue) {
   while (queue != NULL) {  
     printf("%d ", queue->elemento); 
