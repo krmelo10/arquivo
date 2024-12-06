@@ -45,7 +45,7 @@ int main() {
     if (!primeiro)
         printf(" ");
     
-    inverter_palavra(palavra);
+    inverte(palavra);
 
     return 0;
 }
