@@ -3,7 +3,7 @@
 #include <time.h>
 #define MAX 100
 
-//função para fazer o merge de dois subvetores
+//merge de dois subvetores
 void merge(int v[], int e, int m, int d) {
     int i, j, k;
     int n1 = m - e + 1;  //tamanho do primeiro subvetor
