@@ -54,7 +54,7 @@ char *intopos(char infixa[]) {
     }
 
     free(p);
-    posfixa[j] = '\0'; //finaliza a string pós-fixa
+    posfixa[j] = '\0'; //finaliza a string pós-fixa.
     return posfixa;
 }
 
