@@ -6,7 +6,7 @@ typedef struct no {
     struct no *seg;
 }no;
 
-//empilha (push) um valor na pilha
+//(push) empilha um valor na pilha
 void push(no **topo, int num) {
     no *novo = malloc(sizeof(no));
     novo->num = num;
@@ -14,7 +14,7 @@ void push(no **topo, int num) {
     *topo = novo;
 }
 
-//desempilha (pop) um valor da pilha
+//(pop) desempilha um valor da pilha
 int pop(no **topo) {
     if (*topo == NULL) 
         //pilha vazia
