@@ -72,24 +72,26 @@ void imprime(no *head){
 int main(){
   int N;
   scanf("%d", &N);
+  getchar();
 
   for(int n = 0; n < N; n++){
     no *lista = NULL;
 
     //leitura dos itens da lista de compras
     char linha[ITEM];
-    getchar();
     fgets(linha, ITEM, stdin);
     linha[strcspn(linha, "\n")] = '\0';
 
     //divide a linha em palavras e as insere na lista
-    char *item = strtok(linha, " \n");
+    char *item = strtok(linha, " ");
     while(item != NULL){
       insere(&lista, item);
       item = strtok(NULL, " \n");
     }
+    
     ordena(lista);
     imprime(lista);
   }
+  
   return 0;
 }
