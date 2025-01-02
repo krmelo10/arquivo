@@ -80,6 +80,7 @@ int main(){
     char linha[ITEM];
     getchar();
     fgets(linha, ITEM, stdin);
+    linha[strcspn(linha, "\n")] = '\0';
 
     //divide a linha em palavras e as insere na lista
     char *item = strtok(linha, " \n");
