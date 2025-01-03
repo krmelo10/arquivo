@@ -15,7 +15,6 @@ no *criano(char item[]){
   if(novo != NULL){
     strcpy(novo->item, item);
     novo->seg = NULL;
-    return novo;
   }
   return novo;
 }
@@ -29,9 +28,8 @@ void insere(no **head, char item[]){
   }
   no *aux = *head;
   while(aux != NULL){
-    if(strcmp(aux->item, item) == 0){
+    if(strcmp(aux->item, item) == 0)
       return;
-    }
     aux = aux->seg;
   }
   no *temp = *head;
