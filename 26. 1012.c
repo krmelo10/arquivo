@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main() {
+int main(){
     
     double A, B, C;
     const double PI = 3.14159;
