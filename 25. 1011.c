@@ -8,7 +8,7 @@ int main(){
 
     scanf("%d", &R);
 
-    V = (4.0/3.0 * PI * R * R * R);
+    V = 4.0/3.0 * PI * R * R * R;
 
     printf("VOLUME = %.3lf\n", V);
 
