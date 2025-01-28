@@ -53,7 +53,7 @@ void dijkstra(int grafo[V][V], int origem) {
 
 int main() {
     //grafo representado como uma matriz de adjacências
-    int graph[V][V] = {
+    int grafo[V][V] = {
         {0, 2, 0, 1, 0},
         {2, 0, 3, 2, 0},
         {0, 3, 0, 0, 1},
@@ -62,7 +62,7 @@ int main() {
     };
 
     //chama o algoritmo para o vértice de origem 0
-    dijkstra(graph, 0);
+    dijkstra(grafo, 0);
 
     return 0;
 }
