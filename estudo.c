@@ -13,3 +13,15 @@ typedef struct hashtable {
   no **tabela;
 } hashtable;
 
+hashtable *criatabela(int tam){
+  hashtable *novatabela = malloc(sizeof(hashtable));
+  novatabela->tam = tam;
+  novatabela->tabela = malloc(tam * sizeof(no*));
+
+  for(int i = 0; i < tam; i++)
+    novatabela->tabela[i] = NULL;
+
+  return novatabela;
+}
+
+hashtable
