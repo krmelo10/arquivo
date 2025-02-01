@@ -20,7 +20,8 @@ tabelahash* criartabela(int tam) {
     novatabela->tabela = malloc(tam * sizeof(no*));
     
     for (int i = 0; i < tam; i++)
-        novatabela->tabela[i] = NULL; //inicializa todas as listas como vazias
+        //inicializa todas as listas como vazias
+        novatabela->tabela[i] = NULL;
     
     return novatabela;
 }
